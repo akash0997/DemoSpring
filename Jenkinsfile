@@ -52,6 +52,7 @@ pipeline{
    }
 post {
     always {
+        script {
         def jsonString = '{"jobname":"${env.JOB_NAME}","buildurl":"${env.BUILD_URL}","buildnumber":"${env.BUILD_NUMBER}"}'
         def jsonObj = readJSON text: jsonString
 
