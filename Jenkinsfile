@@ -39,13 +39,15 @@ pipeline{
         }
          }
    }
-           post {
-    success {
-      slackSend (color: 'good', message: "Complete: Job '${JOB_NAME} with built number:${BUILD_NUMBER}'")
-    }
-    failure {
-      slackSend (color: 'danger', message: "Breakdown: Job '${JOB_NAME} with built number:${BUILD_NUMBER}'") 
-    }
+  post {
+               def jsonString = '{"jobname":"${env.JOB_NAME}","buildurl":"${env.BUILD_URL}","buildnumber":"${env.BUILD_NUMBER}"}'
+        def jsonObj = readJSON text: jsonString
+
+        //assert jsonObj['jobname'] == 'katone'  // this is a comparison.  It returns true
+        sh "echo ${jsonObj.jobname}"  // prints out jobname
+        sh "echo ${jsonObj.buildurl}"   // prints out url
+        sh "echo ${jsonObj.buildnumber}"   // prints out no.
+    
 }
 }
 
