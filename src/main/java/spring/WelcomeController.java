@@ -11,7 +11,7 @@ public class WelcomeController {
 	//@Autowired 
 	//private welcomeservice service;
 			
-	@RequestMapping("/")
+	@RequestMapping("/test")
 	public String index() {
 		//System.out.println("AppCon-WEB");
 		return "index";
